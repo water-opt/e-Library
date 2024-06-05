@@ -1,0 +1,67 @@
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 50px auto;
+    width: 480px;
+  }
+  
+  .login-form p1 {
+    font-size: 22px;
+    margin-bottom: 25px;
+  }
+  
+  .login-form p2 {
+    font-size: 9px;
+    color: #9b9b9b;
+    font-style: italic;
+    margin-left: 160px;
+    margin-top: -10px;
+  }
+
+  .login-form p3 {
+    font-size: 9px;
+    font-style: italic;
+    text-decoration: none !important;
+    margin-left: 3px;
+  }
+
+  .login-form p {
+    font-size: 7px;
+    color: #9b9b9b;
+    font-style: italic;
+    text-decoration: none !important;
+    margin-left: 350px;
+    margin-top: -7px;
+  }
+
+  .login-input {
+    width: 400px;
+    margin-top: 10px;
+    margin-left: 20px;
+    padding: 10px;
+    border: 1px solid #eeeeee;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+  
+  .login-button {
+    background-color: #007bff;
+    color: white;
+    margin-left: 140px;
+    margin-top: 30px;
+    margin-bottom: 0;
+    padding: 10px 15px;
+    width: 180px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .login-button:hover {
+    background-color: #0069d9;
+  }
+  
