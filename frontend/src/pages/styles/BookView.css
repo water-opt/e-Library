@@ -1,0 +1,12 @@
+.book-view {
+    animation: slide 3s infinite alternate;
+}
+
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(50px); 
+    }
+}

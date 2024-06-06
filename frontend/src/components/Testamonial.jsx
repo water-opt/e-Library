@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Testamonial = () => {
     return (
         <div class="container my-5">
-            <h2 class="text-center" style={{ marginTop: "150px", marginBottom: "50px" }}>Testimonials</h2>
+            <h2 class="text-center" style={{ marginTop: "100px", marginBottom: "50px" }}>Testimonials</h2>
             <div class="row">
                 <div class="col-md-4">
                     <blockquote class="blockquote text-center">

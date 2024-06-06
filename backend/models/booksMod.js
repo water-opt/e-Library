@@ -23,6 +23,9 @@ const bookSchema = new mongoose.Schema({
     },
     featured: {
         type: Boolean
+    },
+    category: {
+        type: String
     }
 }, {timestamps: true})
 

@@ -30,6 +30,7 @@ const Home = () => {
             <Hero />
             <h2 className="text-center">Featured Books</h2>
             <FeaturedBooks featuredBooks={books} />
+            <h2 className="text-center" style={{ marginTop: "50px", marginBottom: "50px" }}>Categories</h2>
             <CategoryBooks />
             <Testamonial />
         </div>
