@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import './styles/userManageStyles.css';
+import { jwtDecode } from 'jwt-decode';
+import { login } from '../services/auth';
 import RoleContext from '../components/RoleContext';
 import IsLoginCotext from '../components/IsLoginContext'; 
 
@@ -17,25 +19,7 @@ const LoginPage = () => {
     event.preventDefault(); 
 
     try {
-      const response = await axios.post('/api/user/login', { email, password });
-
-      if (response.status !== 200) {
-        throw new Error('Login failed ..'); 
-      } else if (response.status == 500) {
-        throw new Error('Internal server error ..');
-      }
-
-      const data = response.data;
-      if (!data || typeof data.role === 'undefined') {
-        throw new Error('Invalid response data ..');
-      }
-      
-      setRole(data.role);
-      setLogin(true);
-
-      if (data.role === 'user') {
-        navigate('/user/home');
-      } 
+      var code = await login( navigate, setLogin, setRole, { email, password } );
     } catch (error) {
       setError(error.message);
     }
@@ -44,7 +28,7 @@ const LoginPage = () => {
   return (
     <div className="login-form">
       <p1>Login</p1>
-      {error && <p style={{ color: 'red', fontWeight: 'bold', marginBottom: '10px', width: '465px' }}>{error}</p>}
+      {error && <p style={{ color: 'red', fontWeight: 'bold', marginBottom: '10px', width: '410px' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         
         <input

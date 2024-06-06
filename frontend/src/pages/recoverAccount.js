@@ -23,6 +23,9 @@ const LoginPage = () => {
         throw new Error('User not found ..'); 
       } else if (response.status == 500) {
         throw new Error('Internal server error ..');
+      } else {
+        alert('Email Sent. Please check the Email.')
+        navigate('/user/login')
       }
 
     } catch (error) {

@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const CategoryContainer = () => {
     return (
         <div class="container my-5">
-            <h2 class="text-center">Categories</h2>
+            <h2 class="text-center" style={{ marginTop: "50px", marginBottom: "50px" }}>Categories</h2>
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">

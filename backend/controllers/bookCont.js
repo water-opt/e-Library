@@ -11,7 +11,18 @@ const bookData = async (req, res) => {
     }
 }
 
+const featuredBooks = async (req, res) => {
+    try {
+        const books = await Books.find({ featured: true });
+        res.json(books); 
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
 
 module.exports = {
-    bookData
+    bookData,
+    featuredBooks
 }

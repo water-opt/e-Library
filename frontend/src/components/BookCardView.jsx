@@ -10,7 +10,7 @@ const ProductCard = ({ title, imageFileName, author, fileName }) => {
                 <p className="card-text text-muted">{author}</p>
             </div>
             <a 
-                href={`/uploads/books/${imageFileName}`} 
+                href={`/uploads/books/${fileName}`} 
                 className="btn btn-primary mt-2" 
                 download
             >

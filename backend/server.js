@@ -17,7 +17,7 @@ const port = process.env.PORT;
 
 app.use(cors());
 app.use(session({
-    secret: "qwrewadsc2wjdnaskf9ajsn1",
+    secret: process.env.JWT_SECRET,
     resave: false,
     saveUninitialized: true
 }));

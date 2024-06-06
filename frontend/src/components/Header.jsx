@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useLogin } from './IsLoginContext';
 import '../pages/styles/header.css';
+import IsLoginContext from '../components/IsLoginContext'; 
 import useLogout from './useLogout';
 
 const Header = () => {
   const logout = useLogout();
   const { isLogin } = useLogin();
+  const { setLogin } = useContext(IsLoginContext);
+
+  const handleLogout = () => {
+    logout();
+    setLogin(false); // Set login status to false
+  };
 
   return (
     <header className="header bg-white text-dark p-3 shadow">
@@ -44,7 +51,7 @@ const Header = () => {
               )}
               {isLogin === true && (
                 <li className="nav-item">
-                  <Link className="nav-link" onClick={logout}>
+                  <Link className="nav-link" onClick={handleLogout}>
                     Log out
                   </Link>
                 </li>

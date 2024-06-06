@@ -21,6 +21,8 @@ const LoginPage = () => {
         navigate('/user/login');
       } else if (response.status == 500) {
         throw new Error('Internal server error ..');
+      } else if (response.status === 404) {
+        setError('email not found')
       }
     } catch (error) {
       setError(error.message);

@@ -20,6 +20,9 @@ const bookSchema = new mongoose.Schema({
     imageFileName: {
         type: String,
         require: true
+    },
+    featured: {
+        type: Boolean
     }
 }, {timestamps: true})
 

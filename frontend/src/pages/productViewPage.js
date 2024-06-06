@@ -25,7 +25,7 @@ const BookView = () => {
             }
         } catch (error) {
             console.error(error);
-            setError(error);
+            setError(error.response.data.message || 'An error occurred');
         } finally {
             setLoading(false);
         }
