@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 
 
@@ -34,20 +33,26 @@ export const login = async (navigate, setLogin, setRole, credentials) => {
         const response = await axios.post('/api/user/login', credentials);
         const { token } = response.data;
         
+        if (!token) {
+            throw new Error('Login failed: No token provided');
+        }
+
         const decodedToken = jwtDecode(token);
+
         if (!decodedToken || typeof decodedToken.role === 'undefined') {
             throw new Error('An token error occurred');
-        } else {
-            storeToken(token);
-            setRole(decodedToken.role);
-            navigate('/user/home');
         }
+        
+        storeToken(token);
+        setRole(decodedToken.role);
+        setLogin(true);
+        navigate('/user/home');
     } catch (error) {
-        throw new Error('An error occurred');
+        throw new Error(error);
     }
 };
 
-export const logout = () => {
+export const logoutUser = () => {
     removeToken();
 };
 

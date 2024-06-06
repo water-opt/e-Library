@@ -1,8 +1,6 @@
 import React, { useState, useContext } from 'react';
-import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import './styles/userManageStyles.css';
-import { jwtDecode } from 'jwt-decode';
 import { login } from '../services/auth';
 import RoleContext from '../components/RoleContext';
 import IsLoginCotext from '../components/IsLoginContext'; 
@@ -19,7 +17,7 @@ const LoginPage = () => {
     event.preventDefault(); 
 
     try {
-      var code = await login( navigate, setLogin, setRole, { email, password } );
+      await login( navigate, setLogin, setRole, { email, password } );
     } catch (error) {
       setError(error.message);
     }

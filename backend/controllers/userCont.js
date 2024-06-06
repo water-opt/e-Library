@@ -1,4 +1,5 @@
 const express = require('express');
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('../models/userMod');
 const nodemailer = require('nodemailer');
@@ -39,26 +40,29 @@ const loginUser = async (req, res) => {
     const user = await User.findOne({ email: email });
 
     if (!user) {
-      return res.status(200).json({ error: 'Login failed' });
+      return res.status(200).json({ error: 'Invalid credentials' });
     }
 
-    const isMatchUser = await bcrypt.compare(password, user.password);
+    const isMatchUser = bcrypt.compare(password, user.password);
 
     if (!isMatchUser) {
-      return res.status(200).json({ error: 'Login failed' });
+      return res.status(400).json({ error: 'Invalid credentials' });
     } else {
-      req.session.userId = user._id;
-      req.session.role = user.role;
-      req.session.address = user.address;
+      const token = jwt.sign(
+        { userId: user._id, role: user.role },
+        process.env.JWT_SECRET,
+        { expiresIn: '1h' }
+      );
+
       console.log(`Login successful | User: ${user._id} | Role: ${user.role}`);
-      return res.json({ message: 'Login successful', role: user.role });
-    } 
+
+      return res.json({ message: 'Login successful', token, role: user.role });
+    }
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: `${error}` });
   }
 };
-
 
 const loginRecovery = async (req, res) => {
   const { email } = req.body;

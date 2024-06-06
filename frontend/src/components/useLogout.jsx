@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import { logoutUser } from '../services/auth';
 import RoleContext from '../components/RoleContext';
 import IsLoginContext from "./IsLoginContext";
 
@@ -19,6 +20,7 @@ const useLogout = () => {
 
             if (response.status === 200) {
                 console.log(response.data);
+                logoutUser();
                 navigate('/user/login');
             } else if (response.status === 404){
                 setError('email not found')

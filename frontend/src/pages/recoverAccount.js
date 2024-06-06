@@ -1,16 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './styles/userManageStyles.css';
-import RoleContext from '../components/RoleContext';
-import IsLoginCotext from '../components/IsLoginContext'; 
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-  const { setRole } = useContext(RoleContext);
-  const { setLogin } = useContext(IsLoginCotext);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -20,9 +15,9 @@ const LoginPage = () => {
       const response = await axios.post('/api/user/recovery', { email });
 
       if (response.status === 404) {
-        throw new Error('User not found ..'); 
-      } else if (response.status == 500) {
-        throw new Error('Internal server error ..');
+        setError('User not found ..'); 
+      } else if (response.status === 500) {
+        setError('Internal server error ..');
       } else {
         alert('Email Sent. Please check the Email.')
         navigate('/user/login')

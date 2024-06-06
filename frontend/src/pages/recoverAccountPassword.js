@@ -1,9 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate, Link, useParams } from 'react-router-dom';
-import './styles/userManageStyles.css';
-import RoleContext from '../components/RoleContext';
-import IsLoginCotext from '../components/IsLoginContext'; 
+import { useNavigate, useParams } from 'react-router-dom';
+import './styles/userManageStyles.css'; 
 
 const LoginPage = () => {
   const { userid } = useParams();
@@ -18,8 +16,9 @@ const LoginPage = () => {
       const response = await axios.post('/api/user/password-reset', { password, userid });
 
       if (response.status === 200) {
+        alert('Password Successfully Recovered')
         navigate('/user/login');
-      } else if (response.status == 500) {
+      } else if (response.status === 500) {
         throw new Error('Internal server error ..');
       } else if (response.status === 404) {
         setError('email not found')
